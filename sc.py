@@ -22,10 +22,6 @@ while True:
         while True:
          print('pan left')
          ser.write(bytearray.fromhex('FF 01 00 10 20 00 31'))
-    if d=='d':
-        while True:
-         print('pan left')
-         ser.write(bytearray.fromhex('FF 01 00 10 20 00 31'))
  except KeyboardInterrupt:
     continue 
  
