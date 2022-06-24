@@ -25,4 +25,3 @@ while True:
  except KeyboardInterrupt:
     continue 
  
-print("hihi")
