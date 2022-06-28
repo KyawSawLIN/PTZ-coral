@@ -9,18 +9,18 @@ while True:
     if d=='r':
      while True:
       print('pan right')
-      ser.write(bytearray.fromhex('FF 01 00 02 20 00 23'))
+      ser.write(bytes.fromhex('FF 01 00 02 20 00 23'))
     if d=='l':
         while True:
          print('pan left')
-         ser.write(bytearray.fromhex('FF 01 00 04 3F 00 44'))
+         ser.write(bytes.fromhex('FF 01 00 04 3F 00 44'))
     if d=='u':
         while True:
          print('pan left')
-         ser.write(bytearray.fromhex('FF 01 00 08 00 3F 48'))
+         ser.write(bytes.fromhex('FF 01 00 08 00 3F 48'))
     if d=='d':
         while True:
          print('pan left')
-         ser.write(bytearray.fromhex('FF 01 00 10 20 00 31'))
+         ser.write(bytes.fromhex('FF 01 00 10 20 00 31'))
  except KeyboardInterrupt:
-    continue 
+    continue  
