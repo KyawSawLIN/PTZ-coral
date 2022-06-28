@@ -24,4 +24,3 @@ while True:
          ser.write(bytearray.fromhex('FF 01 00 10 20 00 31'))
  except KeyboardInterrupt:
     continue 
- 
