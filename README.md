@@ -1,7 +1,9 @@
 # PTZ-coral
 
 see test.py for exact angle input control 
+
 see sc.py for manual control continuous motion control 
+
 tbd.py is to be deleted : nothing special and a.py is for rememberence 
 
 
