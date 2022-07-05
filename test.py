@@ -1,6 +1,7 @@
 #this code is for controlling PTS-303Z in exact angle control
 #pan position ranges from 0-350 
 #tilt position ranges from 0-60 
+#type Ctrl+C (keyboard interrupt) for breaking while loop s
 
 import serial
 import time

@@ -1,3 +1,5 @@
+#this is used in early stages of coding (only kept for memory) and refer to test.py if you needed complete code for angle control 
+
 import serial
 import time
 
