@@ -9,7 +9,9 @@ tbd.py is to be deleted : nothing special and a.py is for rememberence
 
 # about hardware requirement 
 PTZ in this project is PTS-303Z. (12V DC input) 
+
 I use coral dev board UART pins to generate serial data. You can also use serial ports in PC(for PC, you may need usb-uart converter) or any microcontroller that include UART. 
+
 As this PTZ platform works via RS485 serial hardware. You need UART(TTL) to RS485 converter(MAX485 chip) to control. 
 
 
