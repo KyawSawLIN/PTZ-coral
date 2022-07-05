@@ -12,13 +12,11 @@ while True:
      #while True:
       print('pan right')
       ser.write(bytes.fromhex('FF 07 00 02 3F 00 48'))
-     
     if d=='l':
         #while True:
          print('pan left')
          ser.write(bytes.fromhex('FF 07 00 04 3F 00 4A'))
          #ser.write(b'\0xFF\0x07\0x00\0x04\0x3F\0x00\0x4A')
-         #ser.write(b'hello')
     if d=='u':
         #while True:
          print('pan left')
@@ -48,6 +46,9 @@ while True:
         #while True:
             print("STOP")
             ser.write(bytes.fromhex('FF 07 00 00 3F 3F 85'))
+    if d=='z':
+        print('zero positon')
+        ser.write(bytes.fromhex('FF 07 00 49 00 00 50'))
 
  except KeyboardInterrupt:
     continue  
