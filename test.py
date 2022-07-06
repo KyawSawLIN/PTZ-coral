@@ -1,12 +1,12 @@
-#this code is for controlling PTS-303Z in exact angle control
-#pan position ranges from 0-350 
-#tilt position ranges from 0-60 
-#type Ctrl+C (keyboard interrupt) for breaking while loop s
+# this code is for controlling PTS-303Z in exact angle control
+# pan position ranges from 0-350
+# tilt position ranges from 0-60
+# type Ctrl+C (keyboard interrupt) for breaking while loop s
 
 import serial
 import time
 
-ser = serial.Serial("COM4", 2400) #2400 baud rate
+ser = serial.Serial("COM5", 2400)  # 2400 baud rate
 
 
 def toHex(dec):  # convert dec to hex without '0x' included
@@ -26,6 +26,29 @@ def checksum(str):  # checksum calculator
     c = c % 256  # take modulo 256
     print('checksum value = ', toHex(c))
     return toHex(c)
+
+
+def print_position(a):
+
+    q1 = toHex(a[4])
+    q2 = toHex(a[5])
+
+    q_3 = '{0:0>2s}{1:0>2s}'.format(q1, q2)
+    q_final = int(q_3, 16) // 99.99
+    return q_final
+
+
+def read_position():
+
+    ser.write(bytes.fromhex('FF 07 00 51 00 00 58'))
+    time.sleep(1)
+    pan_read = ser.read(7)
+
+    ser.write(bytes.fromhex('FF 07 00 53 00 00 5A'))
+    time.sleep(1)
+    tilt_read = ser.read(7)
+
+    return  pan_read,tilt_read
 
 
 def mod(num):  # this function is for converting angle values to real values used in pelco command
@@ -62,6 +85,10 @@ def tilt(var):
 
 
 while True:
+
+    reading = read_position()
+    print('current position ...\t pan:{0} ||  tilt:{1}'.format(print_position(reading[0]), print_position(reading[1])))
+
     z = input("Type (p) for pan and (t) for tilt : ")
 
     if z == 'p':
@@ -79,5 +106,4 @@ while True:
         tilt(var_0)
 
     else:
-        print('type p for pan and t for tilt')
         continue
