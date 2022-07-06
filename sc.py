@@ -4,8 +4,39 @@ import time
 
 ser = serial.Serial("COM4", 2400)
 
+def toHex(dec):  # convert dec to hex without '0x' included
+    digits = "0123456789ABCDEF"
+    x = (dec % 16)
+    rest = dec // 16
+    if (rest == 0):
+        return digits[x]
+    return toHex(rest) + digits[x]
+
+
+def print_position(a):
+
+    q1 = toHex(a[4])
+    q2 = toHex(a[5])
+
+    q_3 = '{0:0>2s}{1:0>2s}'.format(q1, q2)
+    q_final = int(q_3, 16) // 100
+    return q_final
+
+
+def read_position():
+
+    ser.write(bytes.fromhex('FF 07 00 51 00 00 58'))
+    #time.sleep(1)
+    pan_read = ser.read(7)
+
+    ser.write(bytes.fromhex('FF 07 00 53 00 00 5A'))
+    #time.sleep(1)
+    tilt_read = ser.read(7)
+    
+    return pan_read, tilt_read
+
 while True: 
- d = input('decision: left(l) | right(r) | up(u) | down(d) | up right(ur) | up down (ud) | down right(dr) | down left(dl) | STOP(s): ')
+ d = input('decision: left(l) | right(r) | up(u) | down(d) | up right(ur) | up left (ul) | down right(dr) | down left(dl) | STOP(s) | query position(p): ')
  try:
 
     if d=='r':
@@ -49,6 +80,10 @@ while True:
     if d=='z':
         print('zero positon')
         ser.write(bytes.fromhex('FF 07 00 49 00 00 50'))
+    if d == 'p':
+        reading = read_position()
+        print('current position ...\t pan: {0} ||  tilt: {1}'.format(
+        print_position(reading[0]), print_position(reading[1])))
 
  except KeyboardInterrupt:
     continue  
