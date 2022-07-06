@@ -6,7 +6,7 @@
 import serial
 import time
 
-ser = serial.Serial("COM5", 2400)  # 2400 baud rate
+ser = serial.Serial("COM4", 2400)  # 2400 baud rate
 
 
 def toHex(dec):  # convert dec to hex without '0x' included
@@ -24,18 +24,18 @@ def checksum(str):  # checksum calculator
     for i in range(5):
         c = c + str[i]  # combining total values of each byte
     c = c % 256  # take modulo 256
-    print('checksum value = ', toHex(c))
+    #print('checksum value = ', toHex(c))
     return toHex(c)
 
 
 def read_position():
 
     ser.write(bytes.fromhex('FF 07 00 51 00 00 58'))
-    time.sleep(0.1)
+    #time.sleep(0.1)
     pan_read = ser.read(7)
 
     ser.write(bytes.fromhex('FF 07 00 53 00 00 5A'))
-    time.sleep(0.1)
+    #time.sleep(0.1)
     tilt_read = ser.read(7)
 
     return pan_read, tilt_read
@@ -47,7 +47,7 @@ def print_position(a):
     q2 = toHex(a[5])
 
     q_3 = '{0:0>2s}{1:0>2s}'.format(q1, q2)
-    q_final = int(int(q_3, 16) // 99.9)
+    q_final = round((int(q_3, 16) / 100))
     return q_final
 
 
@@ -93,7 +93,7 @@ while True:
     z = input("Type (p) for pan and (t) for tilt : ")
 
     if z == 'p':
-        f = int(input('type pan degree 0 to 350: '))
+        f = int(input('Type pan degree 0 to 350: '))
 
         if f != int(print_position(reading[0])):
 
