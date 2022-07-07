@@ -21,3 +21,9 @@ pyserial is used to generate data. The generated data format should be in pelco-
 # about pelco-d format 
 one of the bytes is checksum and you can calculate in the following website. 
 https://www.scadacore.com/tools/programming-calculators/online-checksum-calculator/
+
+
+# about connecting hardware
+run copy1.py for running from uart pins
+send.py will send test.py(main file) to coral which will receive with recieve.py via serial communication (UART)
+

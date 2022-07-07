@@ -6,7 +6,7 @@
 import serial
 import time
 
-ser = serial.Serial("COM4", 2400)  # 2400 baud rate
+ser = serial.Serial("/dev/ttymxc2", 2400)  # 2400 baud rate
 
 
 def toHex(dec):  # convert dec to hex without '0x' included
