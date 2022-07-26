@@ -1,6 +1,7 @@
 import time
 import board
 import pwmio
+import sys
 from adafruit_motor import servo
 
 # create a PWMOut object on Pin PWM3.
@@ -14,11 +15,9 @@ counter = 1
 # Create a servo object, my_servo.
 
 my_servo_1 = servo.Servo(pwm1, actuation_range=360,
-                         min_pulse=500, max_pulse=2500)
+                         min_pulse=500, max_pulse=2500)  # pan motion
 my_servo_2 = servo.Servo(pwm2, actuation_range=270,
-                         min_pulse=500, max_pulse=2500)
-
-
+                         min_pulse=500, max_pulse=2500)  # tilt motion
 
 
 while 1:
@@ -33,7 +32,7 @@ while 1:
     elif c == 't':
         e = int(input("enter tilt degree"))
         list_a.append(e)
-        print("previous tilt angles : " ,list_a)
+        print("previous tilt angles : ", list_a)
         print(counter)
         i = list_a[counter-1]
 
@@ -50,10 +49,12 @@ while 1:
         except KeyboardInterrupt:
             continue
 
-    elif c == 'i':
+    elif c == 'i':  # reset servos to initial positions and kill the program at the same time
+        my_servo_1.angle = 0
         list_a.append(0)
         i = list_a[counter-1]
         print("previous tilt angles : ", list_a)
+        print('resetting to initial positions')
         try:
             while i != 0:
 
@@ -64,8 +65,7 @@ while 1:
 
         except KeyboardInterrupt:
             continue
-
-
+        sys.exit(0)
 
     else:
         continue
