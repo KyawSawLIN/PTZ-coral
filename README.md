@@ -6,6 +6,8 @@ see sc.py for manual control continuous motion control
 
 tbd.py is to be deleted : nothing special and a.py is for rememberence 
 
+secProj.py, finish.py, dual.py are for controlling two individual servos: one of which serves for pan and other for tilt motion. finish.py is the final version. 
+
 
 # about hardware requirement 
 PTZ in this project is PTS-303Z. (12V DC input) 
