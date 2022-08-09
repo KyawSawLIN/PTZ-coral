@@ -1,6 +1,6 @@
 # PTZ-coral
 
-see test.py for exact angle input control 
+see test.py for exact angle input control of PTS-303S
 
 see sc.py for manual control continuous motion control 
 
