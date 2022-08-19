@@ -8,6 +8,8 @@ tbd.py is to be deleted : nothing special and a.py is for rememberence
 
 secProj.py, finish.py, dual.py are for controlling two individual servos: one of which serves for pan and other for tilt motion. finish.py is the final version. 
 
+sp.py is that lastest version that cooperates daemon threading - pan servos moves 45 increments (0-180) in the background while user can input degree for desired tilt degree at the same time. 
+
 
 # about hardware requirement 
 PTZ in this project is PTS-303Z. (12V DC input) 
