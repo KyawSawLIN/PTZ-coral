@@ -1,7 +1,8 @@
 
 # Python program killing
 # thread using daemon
- 
+# spp.py in coral
+
 import threading
 import time
 import math
@@ -106,11 +107,16 @@ def func2(counter = 0):
        print_angle(previous_tilts[counter],previous_tilts[counter],present_pan)
        counter += 1
  
+def min2sec(var):
+    return var*60
+
+dur = int(input("enter duration in minutes you want to operate in "))
+sec = min2sec(dur)
 t1 = threading.Thread(target=func)
 t1.daemon = True
 t2 = threading.Thread(target = func2)
 t2.daemon = True
 t1.start()
 t2.start()
-time.sleep(100)
+time.sleep(sec)
 sys.exit()
